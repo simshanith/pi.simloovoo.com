@@ -1,0 +1,13 @@
+{
+  "name": "pi.simloovoo.com",
+  "version": "1.0.0",
+  "description": "static website deployed on a Raspberry Pi",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:simshanith/pi.simloovoo.com.git",
+    "type": "git"
+  },
+  "author": "Shane Daniel <simrpgman@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
