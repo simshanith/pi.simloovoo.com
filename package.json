@@ -2,12 +2,34 @@
   "name": "pi.simloovoo.com",
   "version": "1.0.0",
   "description": "static website deployed on a Raspberry Pi",
-  "main": "index.js",
   "repository": {
     "url": "git@github.com:simshanith/pi.simloovoo.com.git",
     "type": "git"
   },
   "author": "Shane Daniel <simrpgman@gmail.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "build:scaffold": "mkdirp build",
+    "build:stats": "webpack --env.production --progress --profile --colors --json > build/webpack-stats.json",
+    "build": "npm run build:scaffold && npm run build:stats",
+    "dev": "npm start",
+    "start": "webpack-dashboard -- npm run webpack-dev-server",
+    "webpack-dev-server": "webpack-dev-server --progress --profile --colors"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "html-webpack-plugin": "^2.30.1",
+    "jstransformer-markdown-it": "^2.0.0",
+    "markdown-it": "^8.4.0",
+    "mkdirp": "^0.5.1",
+    "pug": "^2.0.0-rc.4",
+    "pug-loader": "^2.3.0",
+    "react": "^16.0.0",
+    "webpack": "^3.6.0",
+    "webpack-dashboard": "^1.0.0-5",
+    "webpack-dev-server": "^2.9.1",
+    "yaml-loader": "^0.5.0"
+  }
 }
