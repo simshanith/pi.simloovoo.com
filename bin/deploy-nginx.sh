@@ -17,6 +17,7 @@ rm -v /var/www/pi.simloovoo.com || true
 mkdir -p build
 
 # Link the website content
-ln -s build var/www/pi.simloovoo.com
+ln -s build /var/www/pi.simloovoo.com
 
+# Reload nginx daemon
 systemctl reload nginx
