@@ -17,3 +17,5 @@ mkdir -p /var/www/pi.simloovoo.com
 mkdir -p build
 # Copy the website content
 cp -rvf build/ /var/www/pi.simloovoo.com
+
+systemctl reload nginx
