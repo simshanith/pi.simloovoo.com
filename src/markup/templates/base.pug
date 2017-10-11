@@ -1,0 +1,12 @@
+block setup
+  //- variable declaration etc goes here
+
+- htmlAttributes = htmlAttributes || {}
+- bodyAttributes = bodyAttributes || {}
+
+doctype html
+html&attributes(htmlAttributes)
+  head
+    block head
+  body&attributes(bodyAttributes)
+    block body

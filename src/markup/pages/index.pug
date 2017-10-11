@@ -1,0 +1,9 @@
+extends ~markup/templates/base.pug
+
+block setup
+  - helpers = require('markup/helpers')
+  - renderApp = helpers.renderApp
+
+block body
+  #app
+    != helpers.renderApp(htmlWebpackPlugin.options)

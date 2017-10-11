@@ -1,0 +1,20 @@
+{
+  parserOptions: {
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    }
+  },
+  env: {
+    amd: true,
+    browser: true,
+    commonjs: true,
+    es6: true,
+    node: true,
+    shared-node-browser: true,
+  },
+  plugins: [
+    'react',
+    'import'
+  ]
+}

@@ -57,5 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# Yarn clean
+.yarnclean
+
 # build directory
 build/
