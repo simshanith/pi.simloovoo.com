@@ -3,7 +3,7 @@
 set -ex
 
 # Disable the site if enabled
-rm -v /etc/nginx/sites-available/pi.simloovoo.com
+rm -v /etc/nginx/sites-enabled/pi.simloovoo.com
 
 # Copy nginx configuration
 cp -v pi.simloovoo.com.nginx.conf /etc/nginx/sites-available/pi.simloovoo.com
