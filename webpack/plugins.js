@@ -2,11 +2,11 @@
 
 const path = require('path');
 
-const webpack = require('webpack');
+const ArchivePlugin = require('webpack-archive-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
-
 const glob = require('glob').sync;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 const extractText = require('./extract-text');
 const { rules } = require('./module');
@@ -28,6 +28,7 @@ function createPagePlugin(page) {
 }
 
 module.exports =  [
+  new ArchivePlugin(),
   new DashboardPlugin(),
   extractText.plugin,
   extractText.workaround(rules),

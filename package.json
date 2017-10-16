@@ -14,7 +14,7 @@
     "build:stats": "webpack --env.production --progress --profile --colors --json > build/webpack-stats.json",
     "build:statless": "webpack --env.production --progress --profile --colors",
     "build": "npm run build:scaffold && npm run build:stats",
-    "clean": "rimraf build",
+    "clean": "rimraf build build.zip build.tar.gz",
     "dev": "npm start",
     "deploy": "npm run clean && npm run build && ./bin/deploy-nginx.sh",
     "lint": "eslint . --ext js,jsx,json -f tap | faucet",
@@ -63,6 +63,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "webpack": "^3.6.0",
+    "webpack-archive-plugin": "^3.0.0",
     "webpack-dashboard": "^1.0.0-5",
     "webpack-dev-server": "^2.9.1",
     "yaml-loader": "^0.5.0"
