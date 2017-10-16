@@ -2,9 +2,14 @@
 
 const path = require('path');
 
+const webpack = require('webpack');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+
 const glob = require('glob').sync;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const extractText = require('./extract-text');
+const { rules } = require('./module');
 
 const projectRoot = path.resolve(__dirname, '..');
 const pagesPath = 'src/markup/pages';
@@ -24,6 +29,8 @@ function createPagePlugin(page) {
 
 module.exports =  [
   new DashboardPlugin(),
+  extractText.plugin,
+  extractText.workaround(rules),
 ].concat(
   pages.map(createPagePlugin)
 );

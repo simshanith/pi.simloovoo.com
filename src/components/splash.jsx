@@ -1,16 +1,19 @@
 import React from 'react';
 
-import Nav from './nav.jsx'
+import Markdown from './markdown.jsx';
+import imageCredit from 'assets/images/splash.LICENSE.md';
+import styles from './splash.styl';
 
-export default class Splash extends React.Component {
-  render() {
-    return (
-      <main>
-        <h1>Hello World</h1>
-        <h2>a small static site on Raspberry Pi</h2>
-        <p>Welcome to <a href="/">pi.simloovoo.com</a>! As a technology meta-project, this website describes its self and composition.</p>
-        <Nav />
-      </main>
-    );
-  }
+export default function Splash(props) {
+  const { title, subtitle, body } = props;
+  return (
+    <main className={styles.main}>
+      <h1>{title}</h1>
+      <Markdown>{subtitle}</Markdown>
+      <Markdown>{body}</Markdown>
+      <Markdown className={styles.credit}>
+        {`background photograph: _${imageCredit}_`}
+      </Markdown>
+    </main>
+  );
 }

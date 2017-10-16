@@ -5,5 +5,12 @@ import { renderToString } from 'react-dom/server';
 import App from '../../components/app.jsx';
 
 export function renderApp(options) {
-	return renderToString(<App />)
+  try {
+    return renderToString(
+      <App />
+    );
+  } catch (err) {
+    console.error(err);
+    return '';
+  }
 }

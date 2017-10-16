@@ -1,9 +1,16 @@
 extends ~markup/templates/base.pug
 
 block setup
+  - htmlAttributes = {class: 'wf-loading'}
   - helpers = require('markup/helpers')
   - renderApp = helpers.renderApp
+
+append head
+  script(src="https://use.typekit.net/etb5gcw.js")
+  script.
+    try{Typekit.load({ async: false });}catch(e){}
 
 block body
   #app
     != helpers.renderApp(htmlWebpackPlugin.options)
+    

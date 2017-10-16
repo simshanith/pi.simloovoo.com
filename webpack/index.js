@@ -17,9 +17,11 @@ module.exports = function(env, argv) {
     resolve: {
       alias: {
         'markup': path.resolve(projectRoot, 'src/markup'),
+        'assets': path.resolve(projectRoot, 'assets'),
       },
     },
-    module: require('./module'),
     plugins: require('./plugins'),
+    module: require('./module'),
+    devtool: 'sourcemap',
   };
 };

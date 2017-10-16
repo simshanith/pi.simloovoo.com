@@ -4,6 +4,8 @@ const path = require('path');
 
 const projectRoot = path.resolve(__dirname, '..');
 
+const extractText = require('./extract-text');
+
 module.exports = {
   rules: [{
     test: /\.(js|jsx)$/,
@@ -24,9 +26,21 @@ module.exports = {
       },
     }, {
       test: /\.yaml$/,
-      use: {
+      include: [path.resolve(projectRoot, 'src')],
+      use: [{
+        loader: 'json-loader',
+      }, {
         loader: 'yaml-loader',
-      },
+      }],
+    }, {
+      test: /\.md/,
+      use: 'raw-loader',
+    }, {
+      test: extractText.css.test,
+      use: extractText.css.loaders,
+    }, {
+      test: extractText.stylus.test,
+      use: extractText.stylus.loaders,
     }, {
       test: /\.(js|jsx)$/,
       use: {
