@@ -6,6 +6,7 @@ block setup
   - renderApp = helpers.renderApp
 
 append head
+  meta(name='og:image', content=`http://pi.simloovoo.com${require('assets/images/splash.jpg')}`)
   script(src="https://use.typekit.net/etb5gcw.js")
   script.
     try{Typekit.load({ async: false });}catch(e){}
