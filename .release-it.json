@@ -1,4 +1,7 @@
 {
+  "src": {
+    "tagName": "v%s"
+  },
   "github": {
     "release": true,
     "assets": ["build.zip", "build.tar.gz"]
