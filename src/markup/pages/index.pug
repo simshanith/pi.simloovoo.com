@@ -14,11 +14,11 @@ append head
   meta(property='og:type', content='website')
   meta(property='og:title', content='π ⨯ ˢᶤᵐˡᵒᵒᵛᵒᵒ')
   meta(property='og:description', content='💻 π ☙ diy metaverse')
-  script(src="https://use.typekit.net/etb5gcw.js")
-  script.
-    try{Typekit.load({ async: false });}catch(e){}
 
 block body
   #app
     != helpers.renderApp(htmlWebpackPlugin.options)
-    
+  block endScripts
+    script(src="https://use.typekit.net/etb5gcw.js")
+    script.
+      try{Typekit.load({ async: true });}catch(e){}
