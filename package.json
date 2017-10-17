@@ -15,7 +15,7 @@
   "scripts": {
     "build:scaffold": "mkdirp build",
     "build:webpack": "webpack --env.production --progress --profile --colors --json > build/webpack-stats.json",
-    "build": "npm run build:scaffold && npm run build:webpack",
+    "build": "npm run clean && npm run build:scaffold && npm run build:webpack",
     "clean": "rimraf build build.zip build.tar.gz",
     "dev": "npm start",
     "deploy": "npm run clean && npm run build && ./bin/deploy-nginx.sh",
@@ -23,7 +23,8 @@
     "lint:summary": "npm run lint -- -f tap 2>/dev/null | faucet",
     "start": "webpack-dashboard -- npm run webpack-dev-server",
     "webpack-dev-server": "webpack-dev-server --progress --profile --colors",
-    "release-it": "node -r dotenv/config node_modules/.bin/release-it"
+    "release-it": "node -r dotenv/config node_modules/.bin/release-it",
+    "release": "npm run lint:summary && npm run build && npm run release-it -- -n"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
@@ -63,7 +64,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "next",
     "redux": "^3.7.2",
-    "release-it": "^3.1.1",
+    "release-it": "git+https://github.com/simshanith/release-it.git",
     "rimraf": "^2.6.2",
     "style-loader": "^0.19.0",
     "stylus": "^0.54.5",
