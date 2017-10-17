@@ -24,7 +24,7 @@
     "start": "webpack-dashboard -- npm run webpack-dev-server",
     "webpack-dev-server": "webpack-dev-server --progress --profile --colors",
     "release-it": "node -r dotenv/config node_modules/.bin/release-it",
-    "release": "npm run lint:summary && npm run build && npm run release-it -- -n"
+    "release": "npm run release-it -- -n"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
