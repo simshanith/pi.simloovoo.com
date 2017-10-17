@@ -1,5 +1,8 @@
 {
+  "buildCommand": "yarn build",
   "src": {
+    "beforeStartCommand": "yarn lint:summary",
+    "afterReleaseCommand": "yarn deploy",
     "tagName": "v%s"
   },
   "github": {

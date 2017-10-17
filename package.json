@@ -18,7 +18,7 @@
     "build": "npm run clean && npm run build:scaffold && npm run build:webpack",
     "clean": "rimraf build build.zip build.tar.gz",
     "dev": "npm start",
-    "deploy": "npm run clean && npm run build && ./bin/deploy-nginx.sh",
+    "deploy": "./bin/deploy-nginx.sh",
     "lint": "eslint . --ext js,jsx,json",
     "lint:summary": "npm run lint -- -f tap 2>/dev/null | faucet",
     "start": "webpack-dashboard -- npm run webpack-dev-server",
