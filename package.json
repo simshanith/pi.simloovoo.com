@@ -3,10 +3,13 @@
   "version": "1.0.2",
   "description": "static website deployed on a Raspberry Pi",
   "repository": {
-    "url": "git@github.com:simshanith/pi.simloovoo.com.git",
+    "url": "https://github.com/simshanith/pi.simloovoo.com.git",
     "type": "git"
   },
-  "author": "Shane Daniel <simrpgman@gmail.com>",
+  "author": {
+    "email": "simrpgman@gmail.com",
+    "name": "Shane Daniel"
+  },
   "license": "MIT",
   "private": true,
   "scripts": {
