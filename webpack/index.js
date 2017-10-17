@@ -3,10 +3,11 @@
 const path = require('path');
 
 const webpack = require('webpack');
+const ArchivePlugin = require('webpack-archive-plugin');
 
 const projectRoot = path.resolve(__dirname, '..');
 
-module.exports = function(env, argv) {
+module.exports = function(env = {}, argv) {
   return {
     entry: {
       app: './src/app.js',
@@ -24,7 +25,8 @@ module.exports = function(env, argv) {
     },
     plugins: require('./plugins').concat(
       env.production ? [
-        webpack.DefinePlugin({'process.env.NODE_ENV': 'production'})
+        new ArchivePlugin(),
+        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')})
       ] : []
     ),
     module: require('./module'),

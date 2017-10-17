@@ -28,7 +28,6 @@ function createPagePlugin(page) {
 }
 
 module.exports =  [
-  new ArchivePlugin(),
   new DashboardPlugin(),
   extractText.plugin,
   extractText.workaround(rules),
