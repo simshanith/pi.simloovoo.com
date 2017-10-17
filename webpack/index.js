@@ -26,7 +26,8 @@ module.exports = function(env = {}, argv) {
     plugins: require('./plugins').concat(
       env.production ? [
         new ArchivePlugin(),
-        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')})
+        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')}),
+        new webpack.optimize.UglifyJsPlugin()
       ] : []
     ),
     module: require('./module'),
