@@ -65,3 +65,6 @@ build/
 # build artifacts
 build.tar.gz
 build.zip
+
+# macOS Finder
+.DS_Store
