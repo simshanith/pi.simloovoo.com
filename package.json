@@ -11,15 +11,16 @@
   "private": true,
   "scripts": {
     "build:scaffold": "mkdirp build",
-    "build:stats": "webpack --env.production --progress --profile --colors --json > build/webpack-stats.json",
-    "build:statless": "webpack --env.production --progress --profile --colors",
-    "build": "npm run build:scaffold && npm run build:stats",
+    "build:webpack": "webpack --env.production --progress --profile --colors --json > build/webpack-stats.json",
+    "build": "npm run build:scaffold && npm run build:webpack",
     "clean": "rimraf build build.zip build.tar.gz",
     "dev": "npm start",
     "deploy": "npm run clean && npm run build && ./bin/deploy-nginx.sh",
-    "lint": "eslint . --ext js,jsx,json -f tap | faucet",
+    "lint": "eslint . --ext js,jsx,json",
+    "lint:summary": "npm run lint -- -f tap 2>/dev/null | faucet",
     "start": "webpack-dashboard -- npm run webpack-dev-server",
-    "webpack-dev-server": "webpack-dev-server --progress --profile --colors"
+    "webpack-dev-server": "webpack-dev-server --progress --profile --colors",
+    "release-it": "node -r dotenv/config node_modules/.bin/release-it"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
@@ -32,6 +33,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "child-compiler-loader-list-webpack-plugin": "^0.2.0",
     "css-loader": "^0.28.7",
+    "dotenv": "^4.0.0",
     "eslint": "^4.8.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.7.0",
@@ -58,6 +60,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "next",
     "redux": "^3.7.2",
+    "release-it": "^3.1.1",
     "rimraf": "^2.6.2",
     "style-loader": "^0.19.0",
     "stylus": "^0.54.5",

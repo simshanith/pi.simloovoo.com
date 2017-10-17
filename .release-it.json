@@ -1,0 +1,14 @@
+{
+  "github": {
+    "release": true,
+    "assets": ["build.zip", "build.tar.gz"]
+  },
+  "npm": {
+    "publish": false
+  },
+  "prompt": {
+    "src": {
+      "publish": false
+    }
+  }
+}
