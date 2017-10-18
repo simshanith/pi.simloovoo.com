@@ -11,8 +11,11 @@ const pages = require('./pages');
 const pagesHash = pages.reduce((memo, page) => {
   memo[
     page
+      // remove extension
       .replace(/\.pug$/, '')
+      // assert leading slash
       .replace(/^\/?/, '/')
+      // replace trailing /index with trailing slash
       .replace(/\/index$/, '/')
   ] = true;
   return memo;
@@ -47,7 +50,7 @@ module.exports = function(env = {}, argv) {
     devtool: 'sourcemap',
     devServer: {
       before: app => {
-        // Instead of proxing nginx we're emulating its rewrite
+        // Instead of proxing nginx we're emulating its rewrites
         app.use((req, res, next) => {
           const HTML_REGEX=/\.html$/;
           const INDEX_REGEX=/\/index$/
