@@ -3,7 +3,6 @@
 const path = require('path');
 
 const webpack = require('webpack');
-const ArchivePlugin = require('webpack-archive-plugin');
 
 const pages = require('./pages');
 
@@ -25,13 +24,7 @@ module.exports = function(env = {}, argv) {
         'assets': path.resolve(projectRoot, 'assets'),
       },
     },
-    plugins: require('./plugins').concat(
-      env.production ? [
-        new ArchivePlugin(),
-        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')}),
-        new webpack.optimize.UglifyJsPlugin()
-      ] : []
-    ),
+    plugins: require('./plugins')(env, argv),
     module: require('./module'),
     devtool: 'sourcemap',
     devServer: {

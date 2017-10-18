@@ -48,12 +48,19 @@ pages.hash = pages.reduce((memo, page) => {
     memo.urls[pageHtml] = pageUrl;
   }
 
+  memo.templates[pageHtml] = page;
+  memo.templatePages[page] = pageHtml;
+
   return memo;
 }, {
-  // canonical URLs => file paths
+  // canonical URLs => html pages
   pages: {},
-  // file paths => url
+  // html pages => canonical urls
   urls: {},
+  // html pages => pug templates
+  templates: {},
+  // pug templates => html pages
+  templatePages: {},
 });
 
 pages.redirectUrl = redirectUrl;
