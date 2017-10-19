@@ -1,8 +1,10 @@
 import React from 'react';
 
 import Markdown from './markdown.jsx';
-import imageCredit from 'assets/images/splash.LICENSE.md';
+import assets from 'assets';
 import styles from './splash.styl';
+
+const imageCredit = assets.licenses['splash.jpg'];
 
 export default function Splash(props) {
   const { title, subtitle, body } = props;
