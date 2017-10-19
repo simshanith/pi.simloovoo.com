@@ -1,5 +1,7 @@
 cosmic-latte = #FFF8E7
 
+selection-color = steelblue
+
 :global
   @import 'normalize.css/normalize.css'
   html
@@ -8,7 +10,13 @@ cosmic-latte = #FFF8E7
       color transparent
       *
         color inherit !important
+
+  ::selection
+    background selection-color
+    color lighten(selection-color, 75%)
+    text-shadow darken(selection-color, 25%) 0.02em 0.02em
+
   body
     min-width 100vw
     min-height 100vh
-    background-color cosmic-latte
+    background-color darken(selection-color, 90%)

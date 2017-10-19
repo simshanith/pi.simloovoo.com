@@ -13,6 +13,10 @@ module.exports = function(env = {}, argv) {
     entry: {
       app: './src/app.js',
     },
+    context: projectRoot,
+    node: {
+      __dirname: true,
+    },
     output: {
       path: path.resolve(projectRoot, 'build'),
       filename: '[name].[chunkhash].js',

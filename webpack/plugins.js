@@ -2,6 +2,7 @@
 
 const ArchivePlugin = require('webpack-archive-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
@@ -33,6 +34,12 @@ module.exports = function configurePlugins(env = {}, argv) {
   return [
     extractText.plugin,
     extractText.workaround(rules),
+    new FaviconsWebpackPlugin({
+      logo: 'assets/images/splash.jpg',
+      icons: {
+        appleStartup: false,
+      }
+    }),
   ]
   .concat(pages.map(createPagePlugin))
   .concat(envPlugins)

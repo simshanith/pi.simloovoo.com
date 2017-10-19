@@ -3,7 +3,9 @@ extends ~markup/templates/base.pug
 block setup
   - htmlAttributes = {class: 'wf-loading'}
   - helpers = require('markup/helpers')
-  - renderApp = helpers.renderApp
+  - filename = htmlWebpackPlugin.options.filename
+  - context = {}
+  - app = helpers.createApp({ filename, context })
   - publicPath = 'http://pi.simloovoo.com'
 
 append head
@@ -16,8 +18,10 @@ append head
   meta(property='og:description', content='💻 π ☙ diy metaverse')
 
 block body
+  script.
+    window.__INITIAL_STATE__=!{JSON.stringify(app.initialState)}
   #app
-    != helpers.renderApp(htmlWebpackPlugin.options)
+    != app.html
   block endScripts
     script(src="https://use.typekit.net/etb5gcw.js")
     script.
