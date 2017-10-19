@@ -874,9 +874,44 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-preset-env@^1.6.0, babel-preset-env@1.6.0:
+babel-preset-env@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.6.0.tgz#2de1c782a780a0a5d605d199c957596da43c44e4"
+  dependencies:
+    babel-plugin-check-es2015-constants "^6.22.0"
+    babel-plugin-syntax-trailing-function-commas "^6.22.0"
+    babel-plugin-transform-async-to-generator "^6.22.0"
+    babel-plugin-transform-es2015-arrow-functions "^6.22.0"
+    babel-plugin-transform-es2015-block-scoped-functions "^6.22.0"
+    babel-plugin-transform-es2015-block-scoping "^6.23.0"
+    babel-plugin-transform-es2015-classes "^6.23.0"
+    babel-plugin-transform-es2015-computed-properties "^6.22.0"
+    babel-plugin-transform-es2015-destructuring "^6.23.0"
+    babel-plugin-transform-es2015-duplicate-keys "^6.22.0"
+    babel-plugin-transform-es2015-for-of "^6.23.0"
+    babel-plugin-transform-es2015-function-name "^6.22.0"
+    babel-plugin-transform-es2015-literals "^6.22.0"
+    babel-plugin-transform-es2015-modules-amd "^6.22.0"
+    babel-plugin-transform-es2015-modules-commonjs "^6.23.0"
+    babel-plugin-transform-es2015-modules-systemjs "^6.23.0"
+    babel-plugin-transform-es2015-modules-umd "^6.23.0"
+    babel-plugin-transform-es2015-object-super "^6.22.0"
+    babel-plugin-transform-es2015-parameters "^6.23.0"
+    babel-plugin-transform-es2015-shorthand-properties "^6.22.0"
+    babel-plugin-transform-es2015-spread "^6.22.0"
+    babel-plugin-transform-es2015-sticky-regex "^6.22.0"
+    babel-plugin-transform-es2015-template-literals "^6.22.0"
+    babel-plugin-transform-es2015-typeof-symbol "^6.23.0"
+    babel-plugin-transform-es2015-unicode-regex "^6.22.0"
+    babel-plugin-transform-exponentiation-operator "^6.22.0"
+    babel-plugin-transform-regenerator "^6.22.0"
+    browserslist "^2.1.2"
+    invariant "^2.2.2"
+    semver "^5.3.0"
+
+babel-preset-env@1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.6.1.tgz#a18b564cc9b9afdf4aae57ae3c1b0d99188e6f48"
   dependencies:
     babel-plugin-check-es2015-constants "^6.22.0"
     babel-plugin-syntax-trailing-function-commas "^6.22.0"
@@ -4299,9 +4334,9 @@ parse-json@^2.2.0:
   dependencies:
     error-ex "^1.2.0"
 
-"parse-repo@git+https://git@github.com/simshanith/parse-repo.git":
-  version "1.0.1"
-  resolved "git+https://git@github.com/simshanith/parse-repo.git#0550818795324cb1411738cc8146e59969b38672"
+parse-repo@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/parse-repo/-/parse-repo-1.0.2.tgz#d76f0a46b33cb1589623caf81a5b6740e1fea9da"
 
 parsejson@0.0.3:
   version "0.0.3"
@@ -5208,15 +5243,15 @@ relateurl@0.2.x:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
 
-"release-it@git+https://github.com/simshanith/release-it.git":
-  version "3.1.1"
-  resolved "git+https://github.com/simshanith/release-it.git#d9c67ffc4eb2f06b2ab81bbef9221a88e3e4e24c"
+release-it:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/release-it/-/release-it-3.1.2.tgz#711d187cb35af61d03b9690e2ef256f88de068f6"
   dependencies:
     async-retry "1.1.3"
     babel-plugin-transform-async-to-generator "6.24.1"
     babel-plugin-transform-es2015-modules-commonjs "6.26.0"
     babel-plugin-transform-runtime "6.23.0"
-    babel-preset-env "1.6.0"
+    babel-preset-env "1.6.1"
     babel-register "6.26.0"
     babel-runtime "6.26.0"
     bump-file "1.0.0"
@@ -5228,7 +5263,7 @@ relateurl@0.2.x:
     inquirer "3.3.0"
     lodash "4.17.4"
     ora "1.3.0"
-    parse-repo "git+https://git@github.com/simshanith/parse-repo.git"
+    parse-repo "1.0.2"
     semver "5.4.1"
     shelljs "0.7.8"
     supports-color "4.4.0"

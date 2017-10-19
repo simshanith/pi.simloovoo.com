@@ -3,10 +3,13 @@
   "src": {
     "beforeStartCommand": "yarn lint:summary",
     "afterReleaseCommand": "yarn deploy",
-    "tagName": "v%s"
+    "commitMessage": "Release v%s",
+    "tagName": "v%s",
+    "tagAnnotation": "Release v%s"
   },
   "github": {
     "release": true,
+    "releaseName": "v%s",
     "assets": ["build.zip", "build.tar.gz"]
   },
   "npm": {
