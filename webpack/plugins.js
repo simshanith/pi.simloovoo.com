@@ -10,7 +10,7 @@ const { rules } = require('./module');
 const pages = require('./pages');
 
 function createPagePlugin(page) {
-  const filename = pages.hash.templatePages[page];
+  const filename = pages.hash.templatePages[page].replace(/^\//, '');
   const template = `${pages.path}/${page}`;
   return new HtmlWebpackPlugin({
     filename,
