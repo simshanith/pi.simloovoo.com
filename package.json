@@ -15,7 +15,7 @@
   "scripts": {
     "build:scaffold": "mkdirp build",
     "build:webpack": "webpack --env.production --progress --profile --colors",
-    "build": "npm run clean && npm run build:scaffold && npm run webpack -- --json > build/webpack-stats.json",
+    "build": "npm run clean && npm run build:scaffold && npm run build:webpack -- --json > build/webpack-stats.json",
     "clean": "rimraf build build.zip build.tar.gz",
     "dev": "webpack-dev-server --progress --profile --colors",
     "deploy": "./bin/deploy-nginx.sh",
