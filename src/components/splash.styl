@@ -2,49 +2,49 @@ mainColor = #ddd
 accentColor = darken(mainColor, 40%)
 
 .main
-  background-image url('assets/images/splash.jpg')
-  background-size cover
-  background-repeat no-repeat
-  background-position center
-  padding 80vh 0 2em
-  text-align center
-  color mainColor
-  
-  line-height 1.5
-  font-size 1.5em
-  
-  position relative
-  z-index 0
+	background-image url('assets/images/splash.jpg')
+	background-size cover
+	background-repeat no-repeat
+	background-position center
+	padding 80vh 0 2em
+	text-align center
+	color inherit
 
-  &::before
-    content ''
-    position absolute
-    z-index -1
-    bottom 0
-    left 0
-    height 33.3%
-    width 100%
-    background-image url('assets/images/black-thread-light.png')
-    mask-image linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)
-    mask-type alpha
+	line-height 1.5
+	font-size 1.5em
 
-  a
-    color accentColor
-    text-decoration none
-    &:hover, &:focus
-      text-decoration underline
-  
-  h1
-    font-size 10vw
-    margin 0
-    transition color 0.5s 0.75s ease-in-out
-    :global(.wf-loading) &
-      transition none
-  h2
-    font-size 4vw
-    font-style italic
+	position relative
+	z-index 0
+
+	&::before
+		content ''
+		position absolute
+		z-index -1
+		bottom 0
+		left 0
+		height 33.3%
+		width 100%
+		background-image url('assets/images/black-thread-light.png')
+		mask-image linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)
+		mask-type alpha
+
+	a
+		color accentColor
+		text-decoration none
+		&:hover, &:focus
+			text-decoration underline
+
+	h1
+		font-size 10vw
+		margin 0
+		transition color 0.5s 0.75s ease-in-out
+		:global(.wf-loading) &
+			transition none
+	h2
+		font-size 4vw
+		font-style italic
 
 .credit
-  font-size .75em
-  p
-    display inline
+	font-size .75em
+	p
+		display inline

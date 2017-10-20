@@ -1,19 +1,23 @@
-selection-color = steelblue
+splash=#0187C4
+splashDark=#00020F
+
+selection-color = splash
 
 :global
-  @import 'normalize.css/normalize.css'
-  html
-    font-family "futura-pt", sans-serif
-    &.wf-loading 
-      color transparent
-      *
-        color inherit !important
+	@import 'normalize.css/normalize.css'
+	html
+		font-family "futura-pt", sans-serif
+		&.wf-loading
+			color transparent
+			*
+				color inherit !important
 
-  ::selection
-    background selection-color
-    color lighten(selection-color, 75%)
-    text-shadow darken(selection-color, 25%) 0.02em 0.02em
+	::selection
+		background selection-color
+		color lighten(selection-color, 75%)
+		text-shadow darken(selection-color, 25%) 0.02em 0.02em
 
-  body
-    min-height 100vh
-    background-color darken(selection-color, 90%)
+	body
+		min-height 100vh
+		background-color splashDark
+		color #ddd
