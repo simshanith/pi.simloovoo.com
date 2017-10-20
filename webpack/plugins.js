@@ -1,13 +1,15 @@
 'use strict';
 
 const ArchivePlugin = require('webpack-archive-plugin');
+const ChildCompilerLoaderListPlugin = require('child-compiler-loader-list-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
 const webpack = require('webpack');
 
-const extractText = require('./extract-text');
-const { rules } = require('./module');
+const configureRules = require('./module').configureRules;
+const extractText = require('./css').extractText;
 const pages = require('./pages');
 
 function createPagePlugin(page) {
@@ -20,11 +22,26 @@ function createPagePlugin(page) {
   });
 }
 
+function prerenderPlugin(env = {}, argv) {
+  const rules = configureRules(Object.assign({}, env, {
+    prerender: true
+  }));
+  return new ChildCompilerLoaderListPlugin({
+    test: /html-webpack-plugin/,
+    rules,
+  });
+}
+
 module.exports = function configurePlugins(env = {}, argv) {
   const envPlugins = env.production ? [
     new ArchivePlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
+    new StatsWriterPlugin({
+      filename: 'webpack-stats.json',
+      // no field filtering
+      fields: null,
     }),
     new webpack.optimize.UglifyJsPlugin(),
   ] : [
@@ -32,13 +49,16 @@ module.exports = function configurePlugins(env = {}, argv) {
   ];
 
   return [
-    extractText.plugin,
-    extractText.workaround(rules),
+    extractText,
+    prerenderPlugin(env, argv),
     new FaviconsWebpackPlugin({
       logo: 'assets/images/splash.jpg',
       icons: {
+        android: false,
+        appleIcon: false,
         appleStartup: false,
-      }
+        firefox: false,
+      },
     }),
   ]
   .concat(pages.map(createPagePlugin))

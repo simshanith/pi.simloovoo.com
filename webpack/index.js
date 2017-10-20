@@ -29,7 +29,7 @@ module.exports = function(env = {}, argv) {
       },
     },
     plugins: require('./plugins')(env, argv),
-    module: require('./module'),
+    module: require('./module')(env, argv),
     devtool: 'sourcemap',
     devServer: {
       contentBase: path.resolve(projectRoot, 'build'),
@@ -53,6 +53,10 @@ module.exports = function(env = {}, argv) {
           return next();
         });
       }
-    }
+    },
+    stats: {
+      modules: false,
+      children: false,
+    },
   };
 };

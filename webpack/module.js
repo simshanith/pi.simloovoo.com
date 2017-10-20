@@ -2,12 +2,12 @@
 
 const path = require('path');
 
+const configureCssLoaders = require('./css');
+
 const projectRoot = path.resolve(__dirname, '..');
 
-const extractText = require('./extract-text');
-
-module.exports = {
-  rules: [{
+function configureRules(env = {}, argv) {
+  return [{
     test: /\.(js|jsx)$/,
     enforce: 'pre',
     use: [{
@@ -35,13 +35,9 @@ module.exports = {
     }, {
       test: /\.md/,
       use: 'raw-loader',
-    }, {
-      test: extractText.css.test,
-      use: extractText.css.loaders,
-    }, {
-      test: extractText.stylus.test,
-      use: extractText.stylus.loaders,
-    }, {
+    }]
+    .concat(configureCssLoaders(env, argv))
+    .concat([{
       test: /\.(js|jsx)$/,
       use: {
         loader: 'babel-loader',
@@ -59,6 +55,14 @@ module.exports = {
           name: '[path][name].[hash:8].[ext]',
         },
       },
-    }],
-  }],
+    }]),
+  }];
+}
+
+module.exports = function configureModule(env={}, argv) {
+  return {
+    rules: configureRules(env, argv),
+  };
 };
+
+module.exports.configureRules = configureRules;
