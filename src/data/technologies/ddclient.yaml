@@ -1,0 +1,11 @@
+---
+title: ddclient
+website: https://sourceforge.net/p/ddclient/wiki/Home/
+tags:
+  - software
+  - DNS
+  - networking
+  - systemd
+  - Raspberry Pi
+description: |
+  DDclient is a Perl client used to update dynamic DNS entries.
