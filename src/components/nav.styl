@@ -1,0 +1,17 @@
+@import '_vars.styl'
+
+.nav
+	font-size 2em
+	line-height 2
+	display flex
+	flex-flow row wrap
+	justify-content space-evenly
+	align-items center
+	
+	a
+		&:global(.active)
+			cursor default
+			color mainColor
+			font-weight bold
+			&:hover, &:focus
+				text-decoration none

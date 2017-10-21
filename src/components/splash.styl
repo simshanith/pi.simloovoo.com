@@ -1,12 +1,42 @@
-mainColor = #ddd
-accentColor = darken(mainColor, 40%)
+@import '_vars.styl'
+
+.wrapper
+	background-color transparent
+	transition background-color 0.5s
+	position relative
+
+	&::before
+		z-index 0
+		mask-image url('assets/images/black-thread-light.png')
+		background-image url('assets/images/splash.jpg')
+		background-size cover
+		background-position center
+		mask-type alpha
+		content ''
+		opacity 0
+		transition opacity 0.5s
+		position absolute
+		top 0
+		bottom 0
+		left 0
+		right 0
+		width 100%
+			
+.wrapper
+	background-color transparent
+	&.inactive:hover, &.mask
+		background-color alpha(white, 15%)
+		&::before
+			opacity 1
+			
+	&.inactive
+		cursor pointer
 
 .main
 	background-image url('assets/images/splash.jpg')
 	background-size cover
 	background-repeat no-repeat
 	background-position center
-	padding 80vh 0 2em
 	text-align center
 	color inherit
 
@@ -15,34 +45,42 @@ accentColor = darken(mainColor, 40%)
 
 	position relative
 	z-index 0
+	
+	transition padding 1s
+	padding 2em 0
 
-	&::before
-		content ''
-		position absolute
-		z-index -1
-		bottom 0
-		left 0
-		height 33.3%
-		width 100%
-		background-image url('assets/images/black-thread-light.png')
-		mask-image linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)
-		mask-type alpha
-
-	a
-		color accentColor
-		text-decoration none
-		&:hover, &:focus
-			text-decoration underline
+	:global(.wf-active) &
+		&.inactive:hover, &.mask
+			-webkit-background-clip text
+			h1
+				-webkit-text-fill-color transparent
+				text-shadow 0 0 0 alpha(lighten(splash, 25%), 25%)
+			&::after
+				opacity 1
 
 	h1
+		transition color 1s
+		color #ddd
 		font-size 10vw
 		margin 0
-		transition color 0.5s 0.75s ease-in-out
-		:global(.wf-loading) &
-			transition none
+
 	h2
 		font-size 4vw
 		font-style italic
+
+.main.active
+	padding 80vh 0 2em
+	&::before
+		opacity 1
+
+.details
+	max-height 0
+	overflow hidden
+	transition max-height 0.5s
+	
+	&.active
+		max-height 500px
+		height auto
 
 .credit
 	font-size .75em

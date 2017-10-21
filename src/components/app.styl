@@ -1,7 +1,4 @@
-splash=#0187C4
-splashDark=#00020F
-
-selection-color = splash
+@import '_vars.styl'
 
 :global
 	@import 'normalize.css/normalize.css'
@@ -17,7 +14,14 @@ selection-color = splash
 		color lighten(selection-color, 75%)
 		text-shadow darken(selection-color, 25%) 0.02em 0.02em
 
+	a
+		color accentColor
+		text-decoration none
+		&:hover, &:focus
+			text-decoration underline
+
+
 	body
 		min-height 100vh
 		background-color splashDark
-		color #ddd
+		color mainColor
