@@ -9,8 +9,8 @@ export default class About extends React.Component {
 
 		return (
 				<div className={styles.main}>
-					<h1>{title}</h1>
-					<h2>{subtitle}</h2>
+					<h1 className={styles.h1}>{title}</h1>
+					<h2 className={styles.h2}>{subtitle}</h2>
 					<Markdown>{body}</Markdown>
 				</div>
 		);

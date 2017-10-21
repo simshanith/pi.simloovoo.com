@@ -1,5 +1,15 @@
 @import '_vars.styl'
 
+@keyframes :global(translate-mask-position) {
+	0% {
+		mask-position 0% 0%
+	}
+
+	100% {
+		mask-position 0% 100%
+	}
+}
+
 .wrapper
 	background-color transparent
 	transition background-color 0.5s
@@ -21,7 +31,9 @@
 		left 0
 		right 0
 		width 100%
-			
+		:global
+			animation 10s linear infinite translate-mask-position
+
 .wrapper
 	background-color transparent
 	&.inactive:hover, &.mask
