@@ -1,13 +1,48 @@
+@import '_vars.styl'
+
 .main
 	font-family "adobe-garamond-pro", serif
 	padding 0 2.5em
 	font-size 1.5em
 	line-height 1.333
+	position relative
+	transition color 3s
+
+	&::before
+		position absolute
+		z-index -1
+		content ''
+		color alpha(white, 0.25)
+		transition color 3s
+		mask-image linear-gradient(to bottom, currentColor, alpha(white, 100%) 20%, currentColor 40%)
+		background-image url('assets/images/arp299.jpg')
+		background-size cover
+		background-position bottom center
+		top -128px
+		bottom -5em
+		left 0
+		right 0
+		
+.main:hover
+	color lighten(mainColor, 50%)
+	text-shadow 0px 0px 4px alpha(splashDark, 75%)
+	&::before
+		color alpha(white, 0.5)
+		// mask-image linear-gradient(to bottom, currentColor, alpha(white, 100%) 20%, currentColor 40%)
+
 
 .h1
 	display none
 
 .h2
+	margin 0
+	color lighten(mainColor, 50%)
+	text-shadow 0px 0px 4px alpha(splashDark, 75%)
+	padding 0.83em 0
 	font-style italic
 	font-weight bold
 	text-align center
+	&::before
+		content '☙ '
+	&::after
+		content ' ❧'

@@ -36,8 +36,15 @@
 
 .wrapper
 	background-color transparent
-	&.inactive:hover, &.mask
+	&.mask
 		background-color alpha(white, 15%)
+		&:hover
+			background-color alpha(white, 5%)	
+		&::before
+			opacity 1
+
+	&.inactive:hover
+		background-color alpha(white, 80%)
 		&::before
 			opacity 1
 			

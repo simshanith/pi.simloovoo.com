@@ -7,12 +7,14 @@
 	flex-flow row wrap
 	justify-content space-around
 	align-items center
-	
+
 	a
-		padding 2em
+		padding 1em
 		&:global(.active)
 			cursor default
 			color mainColor
 			font-weight bold
 			&:hover, &:focus
 				text-decoration none
+			&:before
+				content '❦ '
