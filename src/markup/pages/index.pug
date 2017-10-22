@@ -7,11 +7,11 @@ block setup
   - context = {}
   - app = helpers.createApp({ filename, context })
   - publicPath = 'http://pi.simloovoo.com'
+  - location = app.location || filename.replace(/^\/?/, '/')
 
 append head
-  //- TODO move this to Helmet and render based on matched route
-  meta(property='og:url', content=`${publicPath}`)
-  link(rel='canonical', href=`${publicPath}`)
+  meta(property='og:url', content=`${publicPath}${location}`)
+  link(rel='canonical', href=`${publicPath}${location}`)
   meta(property='og:image', content=`${publicPath}${require('assets/images/splash.jpg')}`)
   meta(property='og:type', content='website')
   meta(property='og:title', content='π ⨯ ˢᶤᵐˡᵒᵒᵛᵒᵒ')

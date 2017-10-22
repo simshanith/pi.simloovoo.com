@@ -43,6 +43,7 @@ export function createApp({ filename, context }) {
   return {
     initialState,
     helmet,
-    html
+    html,
+    location,
   };
 }
