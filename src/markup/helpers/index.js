@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
 
@@ -16,28 +17,23 @@ function getLocation(filename='') {
   return pages.hash.urls[page];
 }
 
-export function createStore(location) {
-  const history = createHistory({
-    initialEntries: [location]
-  });
-
-  return configureStore({}, history);
-}
-
-function renderReactApp({ store, location, context = {} }) {
+function renderReactApp({ store, history }) {
   return renderToString(
     <Provider store={store}>
-      <StaticRouter location={location} context={context}>
+      <ConnectedRouter history={history}>
         <App />
-      </StaticRouter>
+      </ConnectedRouter>
     </Provider>
   );
 }
 
 export function createApp({ filename, context }) {
   const location = getLocation(filename);
-  const store = createStore(location);
-  const html = renderReactApp({ store, location, context });
+  const history = createHistory({
+    initialEntries: [location]
+  });
+  const store = configureStore({}, history, { prerender: true });
+  const html = renderReactApp({ store, history });
   const initialState = store.getState();
   const helmet = Helmet.renderStatic();
   return {

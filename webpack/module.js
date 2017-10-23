@@ -44,7 +44,10 @@ function configureRules(env = {}, argv) {
         options: {
           cacheDirectory: true,
           presets: ['env', 'stage-0'],
-          plugins: ['transform-react-jsx'],
+          plugins: ['transform-react-jsx'].concat(
+            env.production ? [] :
+            'transform-react-jsx-source'
+          ),
         },
       },
     }, {

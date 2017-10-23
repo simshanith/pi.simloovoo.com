@@ -21,7 +21,6 @@ export class Splash extends React.Component {
 	render() {
 		const { title, subtitle, body, dispatch } = this.props;
 		const { mask } = this.state;
-
 		return (
 			<Route path="/" render={({ match }) => {
 				const conditionalStyles = {
