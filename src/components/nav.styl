@@ -10,6 +10,12 @@
 
 	a
 		padding 1em
+		&:before
+			content '❦'
+			opacity 0
+			visibility hidden
+			transition opacity 0.5s
+			margin-right 0.5em
 		&:global(.active)
 			cursor default
 			color mainColor
@@ -17,4 +23,5 @@
 			&:hover, &:focus
 				text-decoration none
 			&:before
-				content '❦ '
+				opacity 1
+				visibility visible
