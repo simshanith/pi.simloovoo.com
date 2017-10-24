@@ -1,12 +1,10 @@
-'use strict';
+import path from 'path';
 
-const path = require('path');
-
-const configureCssLoaders = require('./css');
+import configureCssLoaders from './css';
 
 const projectRoot = path.resolve(__dirname, '..');
 
-function configureRules(env = {}, argv) {
+export function configureRules(env = {}, argv) {
   return [{
     test: /\.(js|jsx)$/,
     enforce: 'pre',
@@ -63,10 +61,8 @@ function configureRules(env = {}, argv) {
   }];
 }
 
-module.exports = function configureModule(env={}, argv) {
+export default function configureModule(env={}, argv) {
   return {
     rules: configureRules(env, argv),
   };
 };
-
-module.exports.configureRules = configureRules;

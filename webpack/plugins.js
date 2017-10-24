@@ -1,16 +1,16 @@
 'use strict';
 
-const ArchivePlugin = require('webpack-archive-plugin');
-const ChildCompilerLoaderListPlugin = require('child-compiler-loader-list-webpack-plugin');
-const DashboardPlugin = require('webpack-dashboard/plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
-const webpack = require('webpack');
+import ArchivePlugin from 'webpack-archive-plugin';
+import ChildCompilerLoaderListPlugin from 'child-compiler-loader-list-webpack-plugin';
+import DashboardPlugin from 'webpack-dashboard/plugin';
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { StatsWriterPlugin } from 'webpack-stats-plugin';
+import webpack from 'webpack';
 
-const configureRules = require('./module').configureRules;
-const extractText = require('./css').extractText;
-const pages = require('./pages');
+import { configureRules } from './module';
+import { extractText } from './css';
+import pages from './pages';
 
 function createPagePlugin(page) {
   const filename = pages.hash.templatePages[page].replace(/^\//, '');
@@ -32,7 +32,7 @@ function prerenderPlugin(env = {}, argv) {
   });
 }
 
-module.exports = function configurePlugins(env = {}, argv) {
+export default function configurePlugins(env = {}, argv) {
   const envPlugins = env.production ? [
     new ArchivePlugin(),
     new webpack.DefinePlugin({
@@ -44,8 +44,10 @@ module.exports = function configurePlugins(env = {}, argv) {
       fields: null,
     }),
     new webpack.optimize.UglifyJsPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
   ] : [
-    new DashboardPlugin()
+    new DashboardPlugin(),
+    new webpack.NamedModulesPlugin()
   ];
 
   return [
@@ -59,6 +61,12 @@ module.exports = function configurePlugins(env = {}, argv) {
         appleStartup: false,
         firefox: false,
       },
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime'
     }),
   ]
   .concat(pages.map(createPagePlugin))

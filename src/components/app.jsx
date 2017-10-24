@@ -7,7 +7,6 @@ import About from './about.jsx';
 import Nav from './nav.jsx';
 import Splash from './splash.jsx';
 import Tech from './tech.jsx';
-import './app.styl';
 
 export default class App extends React.Component {
 	render() {

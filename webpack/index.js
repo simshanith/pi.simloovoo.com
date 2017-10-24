@@ -2,14 +2,21 @@ import path from 'path';
 
 import webpack from 'webpack';
 
+import createPlugins from './plugins';
+import createModule from './module';
 import pages from './pages';
 
 const projectRoot = path.resolve(__dirname, '..');
 
 export default function webpackConfig(env = {}, argv) {
+  const stats = {
+    modules: false,
+    children: false,
+  };
   return {
     entry: {
-      app: './src/app.js',
+      app: ['./src/app.styl', './src/app.js'],
+      vendor: './src/vendor.js'
     },
     context: projectRoot,
     node: {
@@ -26,8 +33,8 @@ export default function webpackConfig(env = {}, argv) {
         'assets': path.resolve(projectRoot, 'assets'),
       },
     },
-    plugins: require('./plugins')(env, argv),
-    module: require('./module')(env, argv),
+    plugins: createPlugins(env, argv),
+    module: createModule(env, argv),
     devtool: 'sourcemap',
     devServer: {
       contentBase: path.resolve(projectRoot, 'build'),
@@ -50,11 +57,9 @@ export default function webpackConfig(env = {}, argv) {
 
           return next();
         });
-      }
+      },
+      stats,
     },
-    stats: {
-      modules: false,
-      children: false,
-    },
+    stats,
   };
 };
