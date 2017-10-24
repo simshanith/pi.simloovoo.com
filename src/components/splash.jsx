@@ -1,8 +1,9 @@
-import { connect } from 'react-redux';
 import cx from 'classnames';
+import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import React from 'react';
 import { Route, withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 
 import Markdown from './markdown.jsx';
 import assets from 'assets';
@@ -19,27 +20,38 @@ export class Splash extends React.Component {
 	}
 
 	render() {
-		const { title, subtitle, body, dispatch } = this.props;
+		const { title, subtitle, body, push } = this.props;
 		const { mask } = this.state;
 		return (
-			<Route path="/" render={({ match }) => {
+			<Route path="/" render={({ match, location }) => {
 				const conditionalStyles = {
 					[styles.active]: match.isExact,
 					[styles.inactive]: !match.isExact,
 					[styles.mask]: mask || !match.isExact,
 				};
 
-				const onClick = () => {
+				const maskedDomain = /^http:\/\/(π|xn--1xa)\.simloovoo\.com/;
+
+				const onClick = (event) => {
 					if (match.isExact) {
 						this.setState({
 							mask: !this.state.mask
 						});
+
+						const link = event.target.closest('a');
+						if (link && maskedDomain.test(link.href)) {
+							event.preventDefault();
+							const destination = link.href.replace(maskedDomain, '');
+							if (location.pathname+location.search !== destination) {
+								push(destination);
+							}
+						}
 						return;
 					} else {
 						this.setState({
 							mask: true
 						});
-						return dispatch(push('/'));
+						return push('/');
 					}
 				}
 				return (
@@ -61,12 +73,18 @@ export class Splash extends React.Component {
 	}
 }
 
-export default withRouter(connect((state, ownProps) => {
+function mapStateToProps(state, ownProps) {
 	return {
-		...ownProps
+		...ownProps,
 	};
-}, (dispatch) => {
-	return {
-		dispatch
-	};
-})(Splash));
+}
+
+function mapDispatchToProps(dispatch, getState) {
+	return bindActionCreators({
+		push,
+	}, dispatch);
+}
+
+export const ConnectedSplash = connect(mapStateToProps, mapDispatchToProps)(Splash);
+
+export default withRouter(ConnectedSplash);

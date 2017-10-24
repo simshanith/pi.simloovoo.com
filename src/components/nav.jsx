@@ -9,6 +9,9 @@ export class Nav extends React.Component {
 			<nav className={styles.nav}>
 				<NavLink to="/" exact>Home</NavLink>
 				<NavLink to="/about">About</NavLink>
+				{ /*
+				<NavLink to="/technologies">Tech</NavLink>
+				*/}
 			</nav>
 		);
   }

@@ -28,18 +28,24 @@ function renderReactApp({ store, history }) {
 }
 
 export function createApp({ filename, context }) {
-  const location = getLocation(filename);
-  const history = createHistory({
-    initialEntries: [location]
-  });
-  const store = configureStore({}, history, { prerender: true });
-  const html = renderReactApp({ store, history });
-  const initialState = store.getState();
-  const helmet = Helmet.renderStatic();
-  return {
-    initialState,
-    helmet,
-    html,
-    location,
-  };
+  try {
+    const location = getLocation(filename);
+    const history = createHistory({
+      initialEntries: [location]
+    });
+    const store = configureStore({}, history, { prerender: true });
+    const html = renderReactApp({ store, history });
+    const initialState = store.getState();
+    const helmet = Helmet.renderStatic();
+    return {
+      initialState,
+      helmet,
+      html,
+      location,
+    };
+  } catch (err) {
+    return {
+      html: `<pre style="white-space: pre-wrap;">${err.toString()}\n${err.stack}</pre>`
+    }
+  }
 }
