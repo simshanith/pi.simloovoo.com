@@ -1,0 +1,8 @@
+{
+	// webpack.config.babel.js settings
+	// app settings configured in babel loader
+	presets: [
+		'env',
+		'stage-0',
+	],
+}

@@ -1,14 +1,12 @@
-'use strict';
+import path from 'path';
 
-const path = require('path');
+import webpack from 'webpack';
 
-const webpack = require('webpack');
-
-const pages = require('./pages');
+import pages from './pages';
 
 const projectRoot = path.resolve(__dirname, '..');
 
-module.exports = function(env = {}, argv) {
+export default function webpackConfig(env = {}, argv) {
   return {
     entry: {
       app: './src/app.js',

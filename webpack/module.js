@@ -43,7 +43,8 @@ function configureRules(env = {}, argv) {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
-          presets: ['env', 'stage-0'],
+          babelrc: false,
+          presets: ['env', 'stage-0', ],
           plugins: ['transform-react-jsx'].concat(
             env.production ? [] :
             'transform-react-jsx-source'
