@@ -33,6 +33,10 @@ export class Splash extends React.Component {
 				const maskedDomain = /^http:\/\/(π|xn--1xa)\.simloovoo\.com/;
 
 				const onClick = (event) => {
+					if (event.ctrlKey || event.metaKey || event.altKey) {
+						return;
+					}
+
 					if (match.isExact) {
 						this.setState({
 							mask: !this.state.mask
