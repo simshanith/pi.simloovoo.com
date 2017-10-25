@@ -63,7 +63,8 @@ export default function configurePlugins(env = {}, argv) {
       },
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
+      name: 'vendor',
+      minChunks: Infinity,
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'runtime'
