@@ -59,13 +59,14 @@ function createCssImportLoaders({ prerender = false } = {}) {
   }];
 }
 
-function createLoaders({ prerender = false }, importLoaders) {
+function createLoaders({ prerender = false, production = false }, importLoaders) {
   const loaders = [{
     loader: prerender ? 'css-loader/locals' : 'css-loader',
     options: {
       importLoaders: importLoaders.length,
       modules: true,
       sourceMap: !prerender,
+      localIdentName: production ? '[hash:base64]' : '[name]__[local]--[hash:base64:5]',
     },
   }].concat(importLoaders);
 
