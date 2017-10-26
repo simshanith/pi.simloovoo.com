@@ -8,7 +8,7 @@
 	justify-content space-around
 	align-items center
 
-	a
+	&__link
 		padding 1em
 		&:before
 			content '❦'
@@ -21,7 +21,7 @@
 			margin-left 0.5em
 			visibility hidden
 			opacity 0
-		&:global(.active)
+		&--active
 			cursor default
 			color mainColor
 			font-weight bold

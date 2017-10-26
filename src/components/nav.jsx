@@ -5,12 +5,16 @@ import styles from './nav.styl';
 
 export class Nav extends React.Component {
 	render() {
+		const classProps = {
+			className: styles['nav__link'],
+			activeClassName: styles['nav__link--active'],
+		};
 		return (
 			<nav className={styles.nav}>
-				<NavLink to="/" exact>Home</NavLink>
-				<NavLink to="/about">About</NavLink>
+				<NavLink {...classProps} to="/" exact>Home</NavLink>
+				<NavLink {...classProps} to="/about">About</NavLink>
 				{ /*
-				<NavLink to="/technologies">Tech</NavLink>
+				<NavLink {...classProps} to="/technologies">Tech</NavLink>
 				*/}
 			</nav>
 		);
