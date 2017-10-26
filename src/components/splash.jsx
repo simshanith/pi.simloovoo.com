@@ -103,13 +103,13 @@ export class Splash extends React.Component {
 			match,
 		} = this.props;
 
+		const { mask } = this.state;
+
 		const conditionalStyles = {
 			[styles.active]: match.isExact,
 			[styles.inactive]: !match.isExact,
 			[styles.mask]: mask || !match.isExact,
 		};
-
-		const { mask } = this.state;
 
 		return (
 			<div className={cx(styles.wrapper, conditionalStyles)} onClick={this.handleClick}>
