@@ -1,8 +1,8 @@
 {
-  "buildCommand": "yarn build",
+  "buildCommand": "npm run build",
   "src": {
-    "beforeStartCommand": "yarn lint:summary",
-    "afterReleaseCommand": "yarn deploy",
+    "beforeStartCommand": "npm run lint:summary",
+    "afterReleaseCommand": "npm run deploy",
     "commitMessage": "Release v%s",
     "tagName": "v%s",
     "tagAnnotation": "Release v%s"
