@@ -35,7 +35,7 @@ export default function webpackConfig(env = {}, argv) {
     },
     plugins: createPlugins(env, argv),
     module: createModule(env, argv),
-    devtool: 'sourcemap',
+    devtool: 'source-map',
     devServer: {
       contentBase: path.resolve(projectRoot, 'build'),
       before: app => {

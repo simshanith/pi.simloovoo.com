@@ -43,7 +43,9 @@ export default function configurePlugins(env = {}, argv) {
       // no field filtering
       fields: null,
     }),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+    }),
     new webpack.HashedModuleIdsPlugin(),
   ] : [
     new DashboardPlugin(),
