@@ -13,7 +13,7 @@ import styles from './splash.styl';
 const imageCredit = assets.licenses['splash.jpg'];
 
 export function createLinkHandler(handleClick) {
-	return event => {
+	return function(event) {
 		if (event.ctrlKey || event.metaKey || event.altKey) {
 			return;
 		}
@@ -68,7 +68,9 @@ export class Splash extends React.Component {
 
 	detectLinkClick(event) {
 		// overridden in constructor to avoid function creation every invocation
-		return createLinkHandler(this.handleLinkClick.bind(this))(event);
+		throw new Error('Abstract method - should be overridden in constructor');
+		// reference implementation
+		return createLinkHandler(this.handleLinkClick).call(this, event);
 	}
 
 	handleClick(event) {
