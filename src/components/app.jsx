@@ -12,7 +12,9 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<Splash {...data.splash} />
+				<Route path="/" render={props => (
+					<Splash {...data.splash} {...props} />
+				)} />
 				<Nav />
 				<Switch>
 					<Route path="/" exact render={() => null} />

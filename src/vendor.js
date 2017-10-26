@@ -1,6 +1,8 @@
 import 'classnames';
 import 'history/createBrowserHistory';
+import 'lodash';
 import 'marked';
+import 'proptypes';
 import 'react';
 import 'react-dom';
 import 'react-redux';
