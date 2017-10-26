@@ -56,7 +56,7 @@ export class Splash extends React.Component {
 			push,
 		} = this.props;
 
-		const maskedDomain = /^http:\/\/(π|xn--1xa)\.simloovoo\.com/;
+		const maskedDomain = /^http:\/\/(π|xn--1xa)\.simloovoo\.com\//;
 		if (maskedDomain.test(link.href)) {
 			event.preventDefault();
 			const destination = link.href.replace(maskedDomain, '');
