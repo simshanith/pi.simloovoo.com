@@ -1,20 +1,31 @@
+import cx from 'classnames';
 import React from 'react';
 import { NavLink, Route, withRouter } from 'react-router-dom';
 
 import styles from './nav.styl';
 
+export class StyledNavLink extends React.Component {
+	render() {
+		const props = {
+			...this.props,
+			className: cx(styles['nav__link'], this.props.className),
+			activeClassName: cx(styles['nav__link--active'], this.props.activeClassName),
+		};
+
+		return (
+			<NavLink {...props} />
+		);
+	}
+}
+
 export class Nav extends React.Component {
 	render() {
-		const classProps = {
-			className: styles['nav__link'],
-			activeClassName: styles['nav__link--active'],
-		};
 		return (
 			<nav className={styles.nav}>
-				<NavLink {...classProps} to="/" exact>Home</NavLink>
-				<NavLink {...classProps} to="/about">About</NavLink>
+				<StyledNavLink to="/" exact>Home</StyledNavLink>
+				<StyledNavLink to="/about">About</StyledNavLink>
 				{ /*
-				<NavLink {...classProps} to="/technologies">Tech</NavLink>
+				<StyledNavLink to="/technologies">Tech</StyledNavLink>
 				*/}
 			</nav>
 		);
