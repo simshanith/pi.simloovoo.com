@@ -20,7 +20,7 @@ export function createLinkHandler(handleClick) {
 
 		const link = event.target.closest('a');
 		if (link) {
-			handleClick(event, link);
+			handleClick.call(this, event, link);
 		}
 	}
 }
