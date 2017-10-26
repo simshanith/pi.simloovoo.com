@@ -1,6 +1,6 @@
 {
   "name": "pi.simloovoo.com",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "static website deployed on a Raspberry Pi",
   "repository": {
     "url": "https://github.com/simshanith/pi.simloovoo.com.git",
