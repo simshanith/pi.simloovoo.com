@@ -18,6 +18,8 @@
     "publish": false
   },
   "prompt": {
-    "publish": false
+    "npm": {
+      "publish": false
+    }
   }
 }
