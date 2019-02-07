@@ -1,23 +1,23 @@
 {
-  "buildCommand": "npm run build",
-  "src": {
-    "beforeStartCommand": "npm run lint:summary",
-    "afterReleaseCommand": "npm run deploy",
-    "commitMessage": "Release v%s",
-    "tagName": "v%s",
-    "tagAnnotation": "Release v%s"
+  "git": {
+    "commitMessage": "Release v${version}",
+    "tagName": "v${version}",
+    "tagAnnotation": "Release v${version}"
+  },
+  "scripts": {
+    "beforeStart": "npm run lint:summary",
+    "afterBump": "npm run build",
+    "afterRelease": "npm run deploy"
   },
   "github": {
     "release": true,
-    "releaseName": "v%s",
+    "releaseName": "v${version}",
     "assets": ["build.zip", "build.tar.gz"]
   },
   "npm": {
     "publish": false
   },
   "prompt": {
-    "src": {
-      "publish": false
-    }
+    "publish": false
   }
 }
