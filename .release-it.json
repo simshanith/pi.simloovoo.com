@@ -6,7 +6,6 @@
   },
   "scripts": {
     "beforeStart": "npm run lint:summary",
-    "afterBump": "npm run build",
     "afterRelease": "npm run deploy"
   },
   "github": {
