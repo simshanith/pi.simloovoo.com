@@ -3,12 +3,8 @@
 DEPLOY_BRANCH='master'
 SYMBOLIC_REF="git symbolic-ref --short HEAD"
 
-# https://stackoverflow.com/a/22585746
-IFS=' '
-while read local_ref local_sha remote_ref remote_sha
-do
-	echo "$local_ref $local_sha $remote_ref $remote_sha"
-done
+# https://github.com/typicode/husky/pull/253
+echo $HUSKY_GIT_STDIN
 
 # Only run if pushing master or forced via environment variable
 # e.g.
