@@ -16,7 +16,7 @@ export default function configureStore(initialState={}, history, { prerender = f
 
   store = createStore(combineReducers({
     //router: routerReducer,
-    app: (f={}) => f
+    app: (f={}) => f,
   }, {}), initialState, composeWithDevTools({
     actionCreators: {
       ...routerActions,

@@ -9,3 +9,7 @@ body: |
   It accumulated dust and survived untouched, until one day it beckoned me.
 
   After assembling the Pi and booting it up, I wondered what it could do… Why not create a website detailing itself, a ___diy metaverse___?
+
+  While initially successful, the Raspberry Pi's SD card was lost after some other experimentation, and I haven't bothered to recreate just yet. In the meantime, enjoy the static site experience via Github.
+
+  I hope to reconstruct the server stack directly on Pi, and self-document here. As it stands, this metaverse is more of a blueprint for a rapidly deployable Raspberry Pi static site setup.

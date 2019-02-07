@@ -4,8 +4,9 @@ block setup
   - htmlAttributes = {class: 'wf-loading'}
   - helpers = require('markup/helpers')
   - filename = htmlWebpackPlugin.options.filename
+  - env = htmlWebpackPlugin.options.env
   - context = {}
-  - app = helpers.createApp({ filename, context })
+  - app = helpers.createApp({ filename, context, env })
   - publicPath = 'http://pi.simloovoo.com'
   - location = app.location || filename.replace(/^\/?/, '/')
 

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+DESCRIBE="git describe --long --dirty"
+SYMBOLIC_REF="git symbolic-ref --short HEAD"
+
+echo "Deployed from $($DESCRIBE)"
+echo
+echo "Describe command: $DESCRIBE"
+echo "Symbolic Ref: $($SYMBOLIC_REF)"
+echo "Symolic ref command: $SYMBOLIC_REF"
+echo

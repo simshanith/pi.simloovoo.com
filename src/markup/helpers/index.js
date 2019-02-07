@@ -1,3 +1,4 @@
+import { pick } from 'lodash'
 import Helmet from 'react-helmet';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -6,6 +7,7 @@ import { StaticRouter } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
+
 
 import configureStore from '../../store';
 import data from '../../data';
@@ -27,16 +29,23 @@ function renderReactApp({ store, history }) {
   );
 }
 
-export function createApp({ filename, context }) {
+
+
+export function createApp({ filename, context, env }) {
   try {
     const location = getLocation(filename);
     const history = createHistory({
       initialEntries: [location]
     });
-    const store = configureStore({}, history, { prerender: true });
+    const store = configureStore({
+      app: {
+        env,
+      },
+    }, history, { prerender: true });
     const html = renderReactApp({ store, history });
     const initialState = store.getState();
     const helmet = Helmet.renderStatic();
+
     return {
       initialState,
       helmet,

@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import CommitMessage from './commit-message.jsx';
 import Markdown from './markdown.jsx';
 import styles from './about.styl';
 
@@ -16,8 +19,8 @@ export default class About extends React.Component {
 					<Markdown className={styles.credit}>
 						{credit}
 					</Markdown>
+					<CommitMessage />
 				</div>
 		);
 	}
 }
-
