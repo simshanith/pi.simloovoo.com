@@ -20,7 +20,7 @@
     "dev": "webpack-dev-server --progress --profile --colors",
     "deploy": "npm run deploy:gh-pages",
     "deploy:pi": "./bin/deploy-nginx.sh",
-    "deploy:gh-pages": "gh-pages --dist build --message \"$(./bin/commit-message)\"",
+    "deploy:gh-pages": "gh-pages --add --dist build --message \"$(./bin/commit-message)\"",
     "lint": "eslint . --ext js,jsx,json",
     "lint:summary": "npm run lint -- -f tap 2>/dev/null | faucet",
     "start": "webpack-dashboard -- npm run dev",
