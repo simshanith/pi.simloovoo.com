@@ -4,7 +4,9 @@ DEPLOY_BRANCH='master'
 SYMBOLIC_REF="git symbolic-ref --short HEAD"
 
 # https://github.com/typicode/husky/pull/253
-echo $HUSKY_GIT_STDIN
+IFS=' '
+read -ra arr <<<"$HUSKY_GIT_STDIN"
+for a in "${arr[@]}"; do echo "[$a]"; done
 
 # Only run if pushing master or forced via environment variable
 # e.g.
