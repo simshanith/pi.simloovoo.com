@@ -17,7 +17,7 @@
     "build:scaffold": "mkdirp build && cp CNAME build/",
     "build:webpack": "COMMIT_MESSAGE=\"$(./bin/commit-message)\" webpack --env.production --progress --profile --colors",
     "build": "npm run build:clean && npm run build:scaffold && npm run build:webpack",
-    "pre-push": "echo npm run build",
+    "pre-push": "npm run build",
     "dev": "webpack-dev-server --progress --profile --colors",
     "deploy": "npm run deploy:gh-pages",
     "deploy:pi": "./bin/deploy-nginx.sh",
@@ -26,7 +26,7 @@
     "lint:summary": "npm run lint -- -f tap 2>/dev/null | faucet",
     "start": "webpack-dashboard -- npm run dev",
     "release-it": "node -r dotenv-safe/config node_modules/.bin/release-it",
-    "release": "npm run release-it -- -n"
+    "release": "HUSKY_FORCE_PREPUSH=1 npm run release-it -- -n"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
