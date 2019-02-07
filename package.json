@@ -25,8 +25,7 @@
     "lint": "eslint . --ext js,jsx,json",
     "lint:summary": "npm run lint -- -f tap 2>/dev/null | faucet",
     "start": "webpack-dashboard -- npm run dev",
-    "release-it": "node -r dotenv-safe/config node_modules/.bin/release-it",
-    "release": "HUSKY_FORCE_PREPUSH=1 npm run release-it -- -n"
+    "release-it": "node -r dotenv-safe/config node_modules/.bin/release-it"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
