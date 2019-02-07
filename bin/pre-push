@@ -10,16 +10,16 @@ local_sha="${arr[1]}"
 remote_ref="${arr[2]}"
 remote_sha="${arr[3]}"
 
-echo "refs: $local_ref $remote_ref"
 # Only run if pushing master or forced via environment variable
 # e.g.
 #
 # ```bash
 # HUSKY_FORCE_PREPUSH=1 git push
 # ```
-if [[ $local_ref = $DEPLOY_REF ]] &&
+if
 		[[ $remote_ref = $DEPLOY_REF ]] ||
-		[[ ! -z ${HUSKY_FORCE_PREPUSH+x} ]] ; then
+		[[ ! -z ${HUSKY_FORCE_PREPUSH+x} ]] ;
+then
 	npm run pre-push
 else
 	exit 0
