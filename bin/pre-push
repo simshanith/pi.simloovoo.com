@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+DEPLOY_BRANCH='master'
+SYMBOLIC_REF="git symbolic-ref --short HEAD"
+
+# Investigating pre-push arguments
+# https://stackoverflow.com/a/3588939
+echo
+echo "# arguments called with ---->  ${@}     "
+echo "# \$1 ---------------------->  $1       "
+echo "# \$2 ---------------------->  $2       "
+echo "# path to me --------------->  ${0}     "
+echo "# parent path -------------->  ${0%/*}  "
+echo "# my name ------------------>  ${0##*/} "
+echo
+
+# Only run if pushing master or forced via environment variable
+# e.g.
+#
+# ```bash
+# HUSKY_FORCE_PREPUSH=1 git push
+# ```
+if [[ $SYMBOLIC_REF = $DEPLOY_BRANCH ]] || [[ ! -z ${HUSKY_FORCE_PREPUSH+x} ]] ; then
+	npm run pre-push
+else
+	exit 0
+fi
