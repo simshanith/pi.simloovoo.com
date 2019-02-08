@@ -1,12 +1,17 @@
 block setup
-  //- variable declaration etc goes here
+	//- variable declaration etc goes here
 
-- htmlAttributes = htmlAttributes || {}
-- bodyAttributes = bodyAttributes || {}
+	- htmlAttributes = htmlAttributes || {}
+	- bodyAttributes = bodyAttributes || {}
 
 doctype html
-html&attributes(htmlAttributes)
-  head
-    block head
-  body&attributes(bodyAttributes)
-    block body
+block html
+	html.wf-loading&attributes(htmlAttributes)
+		head
+			block head
+				meta(charset='utf-8')
+				meta(http-equiv='x-ua-compatible', content='ie=edge')
+				meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+
+		body&attributes(bodyAttributes)
+			block body

@@ -1,5 +1,6 @@
 import { bindAll } from 'lodash';
 import cx from 'classnames';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'proptypes';
@@ -63,6 +64,8 @@ export class Splash extends React.Component {
 			if (location.pathname+location.search !== destination) {
 				push(destination);
 			}
+		} else if (window.location.origin !== link.origin) {
+			link.target = link.target || '_blank';
 		}
 	}
 
@@ -115,6 +118,13 @@ export class Splash extends React.Component {
 
 		return (
 			<div className={cx(styles.wrapper, conditionalStyles)} onClick={this.handleClick}>
+				<Helmet>
+					{
+						match.isExact && (
+							<title>🌊🌊🌊</title>
+						)
+					}
+				</Helmet>
 				<main className={cx(styles.main, conditionalStyles)}>
 					<h1>{title}</h1>
 					<div className={cx(styles.details, conditionalStyles)}>

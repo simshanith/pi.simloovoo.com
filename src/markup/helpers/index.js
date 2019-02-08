@@ -1,5 +1,6 @@
-import { pick } from 'lodash'
+import { mapKeys, pick } from 'lodash'
 import Helmet from 'react-helmet';
+import { HTML_TAG_MAP } from 'react-helmet/lib/HelmetConstants'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { renderToString } from 'react-dom/server';
@@ -7,7 +8,6 @@ import { StaticRouter } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
-
 
 import configureStore from '../../store';
 import data from '../../data';
@@ -29,9 +29,29 @@ function renderReactApp({ store, history }) {
   );
 }
 
+export function getAttributes(component) {
+  return mapKeys(component, (val, key) => {
+    return HTML_TAG_MAP[key] || key;
+  });
+}
 
+export function getHtmlAttributes(helmet) {
+  try {
+    return getAttributes(helmet.htmlAttributes.toComponent());
+  } catch (err) {
+    console.error(err);
+  }
+}
 
-export function createApp({ filename, context, env }) {
+export function getBodyAttributes(helmet) {
+  try {
+    return getAttributes(helmet.bodyAttributes.toComponent());
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export function createApp({ filename, env }) {
   try {
     const location = getLocation(filename);
     const history = createHistory({
@@ -53,6 +73,7 @@ export function createApp({ filename, context, env }) {
       location,
     };
   } catch (err) {
+    console.error(err);
     return {
       html: `<pre style="white-space: pre-wrap;">${err.toString()}\n${err.stack}</pre>`
     }

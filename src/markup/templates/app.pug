@@ -1,28 +1,25 @@
 extends ~markup/templates/base.pug
 
 block setup
-  - htmlAttributes = {class: 'wf-loading'}
-  - helpers = require('markup/helpers')
-  - filename = htmlWebpackPlugin.options.filename
-  - env = htmlWebpackPlugin.options.env
-  - context = {}
-  - app = helpers.createApp({ filename, context, env })
-  - publicPath = 'http://pi.simloovoo.com'
-  - location = app.location || filename.replace(/^\/?/, '/')
+	- helpers = require('markup/helpers')
+	- filename = htmlWebpackPlugin.options.filename
+	- env = htmlWebpackPlugin.options.env
+	- app = helpers.createApp({ filename, env })
+	- htmlAttributes = helpers.getHtmlAttributes(app.helmet)
+	- bodyAttributes = helpers.getBodyAttributes(app.helmet)
 
 append head
-  meta(property='og:url', content=`${publicPath}${location}`)
-  link(rel='canonical', href=`${publicPath}${location}`)
-  meta(property='og:image', content=`${publicPath}${require('assets/images/splash.jpg')}`)
-  meta(property='og:type', content='website')
-  meta(property='og:title', content='π ⨯ ˢᶤᵐˡᵒᵒᵛᵒᵒ')
-  title π ⨯ ˢᶤᵐˡᵒᵒᵛᵒᵒ
-  meta(property='og:description', content='💻 π ☙ diy metaverse')
+	!= app.helmet.meta.toString()
+	!= app.helmet.title.toString()
+	!= app.helmet.base.toString()
+	!= app.helmet.link.toString()
+	!= app.helmet.style.toString()
+	!= app.helmet.script.toString()
 
 block body
-  script.
-    window.__INITIAL_STATE__=!{JSON.stringify(app.initialState)};
-  #app
-    != app.html
-  block endScripts
-    include ~markup/includes/typekit-embed.html
+	script.
+		window.__INITIAL_STATE__=!{JSON.stringify(app.initialState)};
+	#app
+		!= app.html
+	block endScripts
+		include ~markup/includes/typekit-embed.html
