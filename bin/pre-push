@@ -1,26 +1,4 @@
 #!/usr/bin/env bash
+PATH="node_modules/.bin:$PATH"
 
-DEPLOY_REF="refs/heads/master"
-
-# https://github.com/typicode/husky/pull/253
-IFS=' '
-read -ra arr <<<"$HUSKY_GIT_STDIN"
-local_ref="${arr[0]}"
-local_sha="${arr[1]}"
-remote_ref="${arr[2]}"
-remote_sha="${arr[3]}"
-
-# Only run if pushing master or forced via environment variable
-# e.g.
-#
-# ```bash
-# HUSKY_FORCE_PREPUSH=1 git push
-# ```
-if
-		[[ $remote_ref = $DEPLOY_REF ]] ||
-		[[ ! -z ${HUSKY_FORCE_PREPUSH+x} ]] ;
-then
-	npm run pre-push
-else
-	exit 0
-fi
+babel-node bin/pre-push.js
