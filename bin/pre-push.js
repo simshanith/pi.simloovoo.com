@@ -30,15 +30,14 @@ const HUSKY_GIT_STDIN = get(env, 'HUSKY_GIT_STDIN', '')
 
 log('HUSKY_GIT_STDIN:\n%s', HUSKY_GIT_STDIN)
 
-const [
-  _localRefs,
-  _localSHAs,
-  remoteRefs = [],
-  _remoteSHAs,
-] = HUSKY_GIT_STDIN.split('\n').map(line => {
-  log(line.trim().split(' '))
-  return line.trim().split(' ')
-})
+const remoteRefs = HUSKY_GIT_STDIN.split('\n')
+  .map(line => line.trim().split(' '))
+  .map(([
+    _localRef,
+    _localSHA,
+    remoteRef,
+    _remoteSha,
+  ]) => remoteRef);
 
 log('Remote refs:\n%s', remoteRefs.join('\n'));
 
