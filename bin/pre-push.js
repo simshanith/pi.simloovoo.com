@@ -48,8 +48,8 @@ if (deployRefMatch) {
 } else if (forceRun) {
   log('building; forced run')
 
-  if (remoteRef) {
-    log('triggered by push to %s', remoteRef)
+  if (remoteRefs.length) {
+    log('triggered by push to %s', remoteRefs.join(', '))
   }
 } else if (!shouldRun) {
   log.info('not running script; exiting')
