@@ -12,7 +12,7 @@
 import child_process from 'child_process'
 import path from 'path'
 
-import { get, pick } from 'lodash'
+import { get, pick, find } from 'lodash'
 import spawnNpm from 'spawn-npm'
 
 import logger from '../src/logger'
@@ -26,15 +26,20 @@ const env = pick(process.env, [
   'HUSKY_GIT_STDIN',
 ])
 
+const HUSKY_GIT_STDIN = get(env, 'HUSKY_GIT_STDIN', '')
+
+log('HUSKY_GIT_STDIN:\n%s', HUSKY_GIT_STDIN)
+
 const [
-  _localRef,
-  _localSHA,
-  remoteRef='',
-  _remoteSHA,
-] = get(env, 'HUSKY_GIT_STDIN', '').split(' ')
+  _localRefs,
+  _localSHAs,
+  remoteRefs = [],
+  _remoteSHAs,
+] = HUSKY_GIT_STDIN.split('\n').map(line => line.trim().split(' '))
+
 
 const forceRun = env.HUSKY_FORCE_PREPUSH == '1'
-const deployRefMatch = remoteRef.match(deployRefRegex)
+const deployRefMatch = find(remoteRefs, ref => ref.match(deployRefRegex))
 
 const shouldRun = deployRefMatch || forceRun
 if (deployRefMatch) {
