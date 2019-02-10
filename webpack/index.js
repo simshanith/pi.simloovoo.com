@@ -65,16 +65,16 @@ export default function webpackConfig(env = {}, argv) {
       runtimeChunk: 'single',
       splitChunks: {
         chunks: 'all',
-        name: !env.production,
+        // name false seems to be broken
+        // https://github.com/webpack-contrib/mini-css-extract-plugin/issues/73
+        name: true,
         cacheGroups: {
           vendor: {
             name: 'vendor',
             test: 'vendor',
             chunks: 'initial',
             minChunks: Infinity,
-            reuseExistingChunk: true,
           },
-          default: false,
         },
       },
     },
