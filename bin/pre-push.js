@@ -37,6 +37,7 @@ const [
   _remoteSHAs,
 ] = HUSKY_GIT_STDIN.split('\n').map(line => line.trim().split(' '))
 
+log('Remote refs:\n%s', remoteRefs.join('\n'));
 
 const forceRun = env.HUSKY_FORCE_PREPUSH == '1'
 const deployRefMatch = find(remoteRefs, ref => ref.match(deployRefRegex))
