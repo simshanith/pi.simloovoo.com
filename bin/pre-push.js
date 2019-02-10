@@ -47,10 +47,6 @@ if (deployRefMatch) {
   log('building; triggered by push to %s', tag)
 } else if (forceRun) {
   log('building; forced run')
-
-  if (remoteRefs.length) {
-    log('triggered by push to %s', remoteRefs.join(', '))
-  }
 } else if (!shouldRun) {
   log.info('not running script; exiting')
   log.info('set HUSKY_FORCE_PREPUSH=1 to force run')
