@@ -35,7 +35,10 @@ const [
   _localSHAs,
   remoteRefs = [],
   _remoteSHAs,
-] = HUSKY_GIT_STDIN.split('\n').map(line => line.trim().split(' '))
+] = HUSKY_GIT_STDIN.split('\n').map(line => {
+  log(line.trim().split(' '))
+  return line.trim().split(' ')
+})
 
 log('Remote refs:\n%s', remoteRefs.join('\n'));
 
