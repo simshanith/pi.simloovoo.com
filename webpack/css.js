@@ -1,12 +1,12 @@
 'use strict';
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const extractText = new ExtractTextPlugin({
+const extractCss = new MiniCssExtractPlugin({
+  // Options similar to the same options in webpackOptions.output
+  // both options are optional
   filename: '[name].[contenthash].css',
-  ignoreOrder: false,
-  allChunks: true,
-});
+})
 
 module.exports = function configureCssLoaders(env={}, argv) {
   return [{
@@ -18,13 +18,12 @@ module.exports = function configureCssLoaders(env={}, argv) {
   }];
 };
 
-module.exports.extractText = extractText;
+module.exports.extractCss = extractCss;
 
 function createStylusImportLoaders(env = {}) {
   const { prerender } = env;
   return createCssImportLoaders(env).concat(
-    prerender ?
-      'stylus-loader' :
+    prerender ? 'stylus-loader' :
       {
         loader: 'stylus-loader',
         options: {
@@ -70,10 +69,7 @@ function createLoaders({ prerender = false, production = false }, importLoaders)
     },
   }].concat(importLoaders);
 
-  return prerender ? loaders : extractText.extract({
-    fallback: 'style-loader',
-    use: loaders,
-  });
+  return prerender ? loaders : [MiniCssExtractPlugin.loader, ...loaders];
 }
 
 function createCssLoaders(env) {

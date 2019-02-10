@@ -4,8 +4,15 @@ import configureCssLoaders from './css';
 
 const projectRoot = path.resolve(__dirname, '..');
 
+const defaultRules = [{
+  type: "javascript/auto",
+  resolve: {}
+},]
+
 export function configureRules(env = {}, argv) {
-  return [{
+  const { prerender } = env
+  const initialRules = prerender ? defaultRules : []
+  return initialRules.concat([{
     test: /\.(js|jsx)$/,
     enforce: 'pre',
     use: [{
@@ -41,12 +48,8 @@ export function configureRules(env = {}, argv) {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
-          babelrc: false,
-          presets: ['env', 'stage-0', ],
-          plugins: ['transform-react-jsx'].concat(
-            env.production ? [] :
-            'transform-react-jsx-source'
-          ),
+          babelrc: true,
+          plugins: env.production ? [] : ['@babel/plugin-transform-react-jsx-source'],
         },
       },
     }, {
@@ -58,7 +61,7 @@ export function configureRules(env = {}, argv) {
         },
       },
     }]),
-  }];
+  }]);
 }
 
 export default function configureModule(env={}, argv) {

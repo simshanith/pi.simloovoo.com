@@ -14,6 +14,7 @@ export default function webpackConfig(env = {}, argv) {
     children: false,
   };
   return {
+    mode: env.production ? 'production' : 'development',
     entry: {
       app: ['./src/app.styl', './src/app.js'],
       vendor: './src/vendor.js'
@@ -59,6 +60,23 @@ export default function webpackConfig(env = {}, argv) {
         });
       },
       stats,
+    },
+    optimization: {
+      runtimeChunk: 'single',
+      splitChunks: {
+        chunks: 'all',
+        name: !env.production,
+        cacheGroups: {
+          vendor: {
+            name: 'vendor',
+            test: 'vendor',
+            chunks: 'initial',
+            minChunks: Infinity,
+            reuseExistingChunk: true,
+          },
+          default: false,
+        },
+      },
     },
     stats,
   };

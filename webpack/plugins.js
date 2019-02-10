@@ -2,13 +2,13 @@ import { pick } from 'lodash';
 import ArchivePlugin from 'webpack-archive-plugin';
 import ChildCompilerLoaderListPlugin from 'child-compiler-loader-list-webpack-plugin';
 import DashboardPlugin from 'webpack-dashboard/plugin';
-import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
+import WebappWebpackPlugin from 'webapp-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { StatsWriterPlugin } from 'webpack-stats-plugin';
 import webpack from 'webpack';
 
 import { configureRules } from './module';
-import { extractText } from './css';
+import { extractCss } from './css';
 import pages from './pages';
 
 function createPagePlugin(page) {
@@ -38,41 +38,33 @@ function prerenderPlugin(env = {}, argv) {
 export default function configurePlugins(env = {}, argv) {
   const envPlugins = env.production ? [
     new ArchivePlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    }),
     new StatsWriterPlugin({
       filename: 'webpack-stats.json',
       // no field filtering
       fields: null,
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-    }),
     new webpack.HashedModuleIdsPlugin(),
   ] : [
     new DashboardPlugin(),
-    new webpack.NamedModulesPlugin()
   ];
 
   return [
-    extractText,
+    extractCss,
     prerenderPlugin(env, argv),
-    new FaviconsWebpackPlugin({
+    new WebappWebpackPlugin({
       logo: 'assets/images/splash.jpg',
-      icons: {
-        android: false,
-        appleIcon: false,
-        appleStartup: false,
-        firefox: false,
+      favicons: {
+        icons: {
+          android: false,
+          appleIcon: false,
+          appleStartup: false,
+          coast: false,
+          favicons: true,
+          firefox: false,
+          windows: false,
+          yandex: false,
+        },
       },
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity,
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'runtime'
     }),
   ]
   .concat(pages.map(createPagePlugin))

@@ -58,5 +58,3 @@ run.stdout.pipe(process.stdout);
 run.stderr.pipe(process.stderr);
 run.on('close', ()=> log.info('Done'))
 run.on('error', (error) => log.error(error))
-
-process.on('exit', ()=> run.kill())
