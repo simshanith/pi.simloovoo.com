@@ -5,6 +5,7 @@ import 'marked';
 import 'proptypes';
 import 'react';
 import 'react-dom';
+import 'react-helmet';
 import 'react-redux';
 import 'react-router-dom';
 import 'react-router-redux';

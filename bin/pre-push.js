@@ -43,7 +43,7 @@ log('Remote refs:\n%s', remoteRefs.join('\n'));
 
 const forceRun = env.HUSKY_FORCE_PREPUSH == '1'
 let deployRefMatch;
-const matchingRef = find(remoteRefs, ref => deployRefMatch = ref.match(deployRefRegex))
+const matchingRef = find(remoteRefs, ref => deployRefMatch = ref && ref.match(deployRefRegex))
 
 const shouldRun = deployRefMatch || forceRun
 if (deployRefMatch) {
