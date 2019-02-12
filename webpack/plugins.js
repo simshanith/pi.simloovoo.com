@@ -20,6 +20,15 @@ function createPagePlugin(page) {
     inject: true,
     template,
     env,
+    minify: {
+      collapseWhitespace: true,
+      removeComments: true,
+      removeRedundantAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      useShortDoctype: true,
+      minifyJS: true,
+    },
     excludeChunks: ['vendor']
   });
 }
