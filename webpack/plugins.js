@@ -1,5 +1,5 @@
-import { pick } from 'lodash';
 import ArchivePlugin from 'webpack-archive-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ChildCompilerLoaderListPlugin from 'child-compiler-loader-list-webpack-plugin';
 import DashboardPlugin from 'webpack-dashboard/plugin';
 import WebappWebpackPlugin from 'webapp-webpack-plugin'
@@ -14,14 +14,13 @@ import pages from './pages';
 function createPagePlugin(page) {
   const filename = pages.hash.templatePages[page].replace(/^\//, '');
   const template = `${pages.path}/${page}`;
-  const env = pick(process.env, [
-    'COMMIT_MESSAGE'
-  ]);
+  const env = process.env;
   return new HtmlWebpackPlugin({
     filename,
     inject: true,
     template,
     env,
+    excludeChunks: ['vendor']
   });
 }
 
@@ -66,6 +65,9 @@ export default function configurePlugins(env = {}, argv) {
         },
       },
     }),
+    new CopyWebpackPlugin([
+      'CNAME'
+    ], {})
   ]
   .concat(pages.map(createPagePlugin))
   .concat(envPlugins)

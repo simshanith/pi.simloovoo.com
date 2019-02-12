@@ -14,7 +14,7 @@
   "private": true,
   "scripts": {
     "build:clean": "rimraf build build.zip build.tar.gz",
-    "build:scaffold": "mkdirp build && cp CNAME build/",
+    "build:scaffold": "mkdirp build",
     "build:webpack": "COMMIT_MESSAGE=\"$(./bin/commit-message)\" webpack --env.production --progress --profile --colors",
     "build": "npm run build:clean && npm run build:scaffold && npm run build:webpack",
     "dev": "webpack-dev-server --progress --profile --colors",
@@ -55,6 +55,7 @@
     "babel-plugin-react-transform": "^3.0.0",
     "child-compiler-loader-list-webpack-plugin": "^0.2.0",
     "classnames": "^2.2.5",
+    "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^0.28.7",
     "dotenv-safe": "^4.0.4",
     "eslint": "^4.8.0",

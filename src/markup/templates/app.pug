@@ -1,9 +1,6 @@
 extends ~markup/templates/base.pug
 
-block setup
-	- helpers = require('markup/helpers')
-	- filename = htmlWebpackPlugin.options.filename
-	- env = htmlWebpackPlugin.options.env
+append setup
 	- app = helpers.createApp({ filename, env })
 	- htmlAttributes = helpers.getHtmlAttributes(app.helmet)
 	- bodyAttributes = helpers.getBodyAttributes(app.helmet)
@@ -14,6 +11,7 @@ append head
 	!= app.helmet.base.toString()
 	!= app.helmet.link.toString()
 	!= app.helmet.style.toString()
+	include ~markup/includes/gtag.pug
 	!= app.helmet.script.toString()
 
 block body
@@ -22,4 +20,4 @@ block body
 	#app
 		!= app.html
 	block endScripts
-		include ~markup/includes/typekit-embed.html
+		include ~markup/includes/typekit-embed.pug

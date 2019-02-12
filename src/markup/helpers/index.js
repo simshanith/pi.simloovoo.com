@@ -1,3 +1,4 @@
+import dotenv from 'dotenv-safe';
 import { mapKeys, pick } from 'lodash'
 import Helmet from 'react-helmet';
 import { HTML_TAG_MAP } from 'react-helmet/lib/HelmetConstants'
@@ -13,6 +14,8 @@ import configureStore from '../../store';
 import data from '../../data';
 import pages from '../../../webpack/pages';
 import App from '../../components/app.jsx';
+
+dotenv.config();
 
 function getLocation(filename='') {
   const page = filename.replace(/^\/?/, '/');
@@ -57,6 +60,9 @@ export function createApp({ filename, env }) {
     const history = createHistory({
       initialEntries: [location]
     });
+    const env = pick(env, [
+      'COMMIT_MESSAGE',
+    ]);
     const store = configureStore({
       app: {
         env,

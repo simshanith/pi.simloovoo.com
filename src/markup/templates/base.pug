@@ -1,17 +1,14 @@
-block setup
-	//- variable declaration etc goes here
+extends ~markup/templates/setup.pug
 
-	- htmlAttributes = htmlAttributes || {}
-	- bodyAttributes = bodyAttributes || {}
+block document
+	doctype html
+	block html
+		html.wf-loading&attributes(htmlAttributes)
+			head
+				block head
+					meta(charset='utf-8')
+					meta(http-equiv='x-ua-compatible', content='ie=edge')
+					meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
 
-doctype html
-block html
-	html.wf-loading&attributes(htmlAttributes)
-		head
-			block head
-				meta(charset='utf-8')
-				meta(http-equiv='x-ua-compatible', content='ie=edge')
-				meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
-
-		body&attributes(bodyAttributes)
-			block body
+			body&attributes(bodyAttributes)
+				block body

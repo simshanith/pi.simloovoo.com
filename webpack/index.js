@@ -1,10 +1,13 @@
 import path from 'path';
 
 import webpack from 'webpack';
+import dotenv from 'dotenv-safe';
 
 import createPlugins from './plugins';
 import createModule from './module';
 import pages from './pages';
+
+dotenv.config();
 
 const projectRoot = path.resolve(__dirname, '..');
 
